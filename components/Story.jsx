@@ -8,9 +8,7 @@ const Story = ({ profile }) => {
         src={avatar}
         alt={name}
       />
-      <p className='text-sm w-14 truncate text-center dark:text-white'>
-        {username}
-      </p>
+      <p className='text-sm w-14 truncate text-center'>{username}</p>
     </div>
   );
 };

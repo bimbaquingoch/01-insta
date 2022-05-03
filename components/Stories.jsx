@@ -22,7 +22,7 @@ const Stories = () => {
   }, []);
 
   return (
-    <div className='flex space-x-2 p-8 bg-transparent mt-4 border border-slate-200 dark:border-none dark:shadow-md dark:shadow-slate-400 rounded-md overflow-x-scroll mb-4'>
+    <div className='flex space-x-2 p-3 md:p-6 md:bg-slate-100 shadow-slate-400 md:rounded-md overflow-x-scroll rounded-none bg-slate-100 md:mt-4 md:border md:border-slate-300'>
       {suggestions.map((profile) => (
         <Story key={profile.id} profile={profile} />
       ))}
