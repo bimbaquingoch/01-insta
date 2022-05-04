@@ -12,6 +12,7 @@ import {
   HeartIcon as HeartIconFilled,
   BookmarkIcon as BookmarkFilled,
 } from "@heroicons/react/solid";
+import Image from "next/image";
 import { useState } from "react";
 
 const Post = ({ post }) => {
@@ -22,11 +23,17 @@ const Post = ({ post }) => {
   return (
     <div className='bg-slate-50 md:my-5 md:rounded-md border md:border-slate-300 border-y-slate-200'>
       <div className='flex items-center p-2 md:p-5 cursor-pointer'>
-        <img
-          className='rounded-full h-12 object-contain border p-1 mr-3  '
-          src={userImg}
-          alt={caption}
-        />
+        <div className='rounded-full h-12 w-12 object-contain border p-1 mr-3'>
+          <Image
+            className='rounded-full'
+            layout='responsive'
+            width={30}
+            height={30}
+            src={userImg}
+            alt={caption}
+          />
+        </div>
+
         <p className='flex-1 font-bold cursor-pointer'>{username}</p>
         <DotsHorizontalIcon className='h-5 cursor-pointer' />
       </div>

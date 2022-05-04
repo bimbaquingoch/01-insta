@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import {
   SearchIcon,
@@ -59,11 +58,16 @@ const Header = () => {
           <PlusCircleIcon className='navBtn ' />
           <UserGroupIcon className='navBtn ' />
           <HeartIcon className='navBtn ' />
-          <img
-            className='h-10 rounded-full cursor-pointer'
-            src='https://avatars.githubusercontent.com/u/52583430?v=4'
-            alt='avatar'
-          />
+
+          <div>
+            <Image
+              width={35}
+              height={35}
+              className='rounded-full cursor-pointer'
+              src='https://avatars.githubusercontent.com/u/52583430?v=4'
+              alt='avatar'
+            />
+          </div>
           <MenuIcon className='h-6 md:hidden cursor-pointer' />
         </div>
       </div>

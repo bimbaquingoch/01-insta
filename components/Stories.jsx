@@ -6,16 +6,11 @@ const Stories = () => {
   const [suggestions, setsuggestions] = useState([]);
 
   useEffect(() => {
-    const peticion = [...Array(20)].map((_, i) => ({
-      ...faker.helpers.contextualCard(),
+    const newPeticion = [...Array(20)].map((_, i) => ({
       id: i,
-    }));
-
-    const newPeticion = peticion.map((newObj) => ({
-      avatar: newObj.avatar,
-      name: newObj.name,
-      id: newObj.id,
-      username: newObj.username,
+      avatar: faker.image.avatar(),
+      name: faker.name.findName(),
+      username: faker.internet.userName(),
     }));
 
     setsuggestions(newPeticion);

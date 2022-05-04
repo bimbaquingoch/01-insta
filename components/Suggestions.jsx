@@ -5,15 +5,11 @@ import Suggestion from "./Suggestion";
 const Suggestions = () => {
   const [sugerencia, setsugerencia] = useState([]);
   useEffect(() => {
-    const sugerencias = [...Array(5)].map((_, i) => ({
-      ...faker.helpers.contextualCard(),
+    const newPeticion = [...Array(5)].map((_, i) => ({
       id: i,
-    }));
-    const newPeticion = sugerencias.map((newObj) => ({
-      avatar: newObj.avatar,
-      name: newObj.name,
-      id: newObj.id,
-      username: newObj.username,
+      avatar: faker.image.avatar(),
+      name: faker.name.findName(),
+      username: faker.internet.userName(),
     }));
 
     setsugerencia(newPeticion);
