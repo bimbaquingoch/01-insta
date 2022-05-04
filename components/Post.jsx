@@ -17,6 +17,7 @@ import { useState } from "react";
 const Post = ({ post }) => {
   const [corazon, setcorazon] = useState(false);
   const [save, setsave] = useState(false);
+  const [contadorLikes, setcontadorLikes] = useState(0);
   const { username, img, userImg, caption } = post;
   return (
     <div className='bg-slate-50 md:my-5 md:rounded-md border md:border-slate-300 border-y-slate-200'>
@@ -31,28 +32,43 @@ const Post = ({ post }) => {
       </div>
       <img className='object-cover w-full' src={img} alt='' />
       {/* buttons */}
-      <div className='flex justify-between items-center p-3'>
+      <div className='flex justify-between items-center pl-3 py-3'>
         <div className='flex space-x-4'>
           {corazon === false ? (
-            <HeartIcon onClick={() => setcorazon(!corazon)} className='btn' />
+            <HeartIcon
+              onClick={() => {
+                setcorazon(!corazon);
+                setcontadorLikes(contadorLikes + 1);
+              }}
+              className='btn'
+            />
           ) : (
             <HeartIconFilled
-              onClick={() => setcorazon(!corazon)}
+              onClick={() => {
+                setcorazon(!corazon);
+                setcontadorLikes(contadorLikes - 1);
+              }}
               className='btn text-red-500'
             />
           )}
           <ChatIcon className='btn' />
           <PaperAirplaneIcon className='btn rotate-45' />
         </div>
-        {save === false ? (
-          <BookmarkIcon className='btn' onClick={() => setsave(!save)} />
-        ) : (
-          <BookmarkFilled
-            className='btn text-red-500'
-            onClick={() => setsave(!save)}
-          />
-        )}
+        <div className='pr-4'>
+          {save === false ? (
+            <BookmarkIcon className='btn' onClick={() => setsave(!save)} />
+          ) : (
+            <BookmarkFilled
+              className='btn text-red-500'
+              onClick={() => setsave(!save)}
+            />
+          )}
+        </div>
       </div>
+
+      {contadorLikes !== 0 && (
+        <p className='pl-4 mb-2 font-bold'>{contadorLikes} Me gusta</p>
+      )}
 
       {/* caption */}
       <p className='pl-4 truncate'>

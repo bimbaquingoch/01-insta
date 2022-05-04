@@ -11,7 +11,7 @@ const Suggestion = ({ personas }) => {
       />
       <div className='flex-1 ml-2'>
         <h2 className='font-semibold text-sm'>{username}</h2>
-        <p className='text-slate-500 text-sm'>{name}</p>
+        <p className='text-slate-500 text-xs'>{name}</p>
       </div>
       <button className='font-bold capitalize text-blue-500 text-sm'>
         follow

@@ -29,11 +29,11 @@ const Suggestions = () => {
       {sugerencia.map((sug) => (
         <Suggestion key={sug.id} personas={sug} />
       ))}
-      <p className='max-w-xs text-slate-400 mt-5 cursor-pointer text-sm'>
+      <p className='max-w-xs text-slate-400 mt-5 cursor-pointer text-xs'>
         Información Ayuda Prensa API Empleo Privacidad Condiciones Ubicaciones
         Cuentas destacadas Hashtags Idioma
       </p>
-      <p className='max-w-xs text-slate-400 mt-5 text-sm'>
+      <p className='max-w-xs text-slate-400 mt-5 text-xs'>
         © 2022 INSTAGRAM FROM META
       </p>
     </div>
