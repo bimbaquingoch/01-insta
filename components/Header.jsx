@@ -19,35 +19,23 @@ const Header = () => {
     <div className='shadow-md bg-slate-100/[0.9] top-0 z-50 sticky'>
       <div className='flex justify-around max-w-6xl mx-5 lg:mx-auto'>
         {/* left */}
-        {session ? (
-          <>
-            <div className='relative hidden lg:inline-grid w-24 cursor-pointer'>
-              <Image
-                src='https://links.papareact.com/ocw'
-                layout='fill'
-                objectFit='contain'
-                alt='instagram img'
-              />
-            </div>
-            <div className='relative w-10 lg:hidden flex-shrink-0 cursor-pointer'>
-              <Image
-                src='https://links.papareact.com/jjm'
-                layout='fill'
-                objectFit='contain'
-                alt='instagram img'
-              />
-            </div>
-          </>
-        ) : (
-          <div className='relative inline-grid w-24 cursor-pointer'>
-            <Image
-              src='https://links.papareact.com/ocw'
-              layout='fill'
-              objectFit='contain'
-              alt='instagram img'
-            />
-          </div>
-        )}
+        <div className='relative hidden lg:inline-grid w-24 cursor-pointer'>
+          <Image
+            src='https://links.papareact.com/ocw'
+            layout='fill'
+            objectFit='contain'
+            alt='instagram img'
+          />
+        </div>
+        <div className='relative w-10 lg:hidden flex-shrink-0 cursor-pointer'>
+          <Image
+            src='https://links.papareact.com/jjm'
+            layout='fill'
+            objectFit='contain'
+            alt='instagram img'
+          />
+        </div>
+
         {/* middle search input field */}
         {session && (
           <div className='max-w-xs'>
