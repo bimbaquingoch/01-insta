@@ -9,10 +9,15 @@
   .btn {
     @apply h-7 hover:scale-110 transition-all duration-150 ease-out cursor-pointer;
   }
+  .phone {
+    @apply bg-slate-900 p-3 rounded-3xl shadow-lg shadow-slate-800 border-2 border-slate-700;
+  }
+  .sombra_phone {
+    @apply shadow-inner shadow-slate-600 rounded-3xl;
+  }
 }
 
 ::-webkit-scrollbar {
-  border-radius: 10px;
   width: 0;
   height: 0;
 }

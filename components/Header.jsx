@@ -14,6 +14,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 const Header = () => {
   const { data: session } = useSession();
+  console.log(session.user.image);
 
   return (
     <div className='shadow-md bg-slate-100/[0.9] top-0 z-50 sticky'>
@@ -68,7 +69,7 @@ const Header = () => {
               <UserGroupIcon className='navBtn ' />
               <HeartIcon className='navBtn ' />
               <img
-                onClick={signOut}
+                onClick={() => signOut({ callbackUrl: "/auth/signin" })}
                 className='navBtn rounded-full h-10 cursor-pointer'
                 src={session?.user?.image}
                 alt={session?.user?.name}
