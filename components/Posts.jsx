@@ -15,7 +15,6 @@ const Posts = () => {
       ),
     []
   );
-  // console.log(posts.data());
   return (
     <div>
       {posts.map((post) => (
