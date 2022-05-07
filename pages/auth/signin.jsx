@@ -36,7 +36,7 @@ const SignIn = ({ providers }) => {
                 iniciar sesion con:
               </h1>
               <button
-                className='hover:bg-blue-400 p-3 rounded-md border-2 border-blue-400 hover:text-white font-bold transition-all duration-200 ease-in'
+                className='hover:bg-blue-400 p-3 rounded-md border-2 border-blue-400 hover:text-white font-bold transisiones'
                 onClick={() =>
                   signInProvider(provider.id, { callbackUrl: "/" })
                 }>
@@ -51,12 +51,12 @@ const SignIn = ({ providers }) => {
           </h1>
           <div className='grid grid-cols-2 gap-8 px-10 pt-3 '>
             <img
-              className='w-48'
+              className='w-48 cursor-pointer'
               src='https://www.instagram.com/static/images/appstore-install-badges/badge_ios_spanish_latinamerica_mexico.png/e2247c4f90de.png'
               alt='app store'
             />
             <img
-              className='w-48'
+              className='w-48 cursor-pointer'
               src='https://www.instagram.com/static/images/appstore-install-badges/badge_android_spanish_latinamerica_mexico-es_LA.png/3cd8a27083c0.png'
               alt='play store'
             />

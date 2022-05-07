@@ -12,32 +12,24 @@ import {
   HeartIcon as HeartIconFilled,
   BookmarkIcon as BookmarkFilled,
 } from "@heroicons/react/solid";
-import Image from "next/image";
 import { useState } from "react";
 
 const Post = ({ post }) => {
   const [corazon, setcorazon] = useState(false);
   const [save, setsave] = useState(false);
   const [contadorLikes, setcontadorLikes] = useState(0);
-  const { username, img, userImg, caption } = post;
+  const { username, image, profileImg, caption } = post.data();
   return (
     <div className='bg-slate-50 md:my-5 md:rounded-md border md:border-slate-300 border-y-slate-200'>
       <div className='flex items-center p-2 md:p-5 cursor-pointer'>
         <div className='rounded-full h-12 w-12 object-contain border p-1 mr-3'>
-          <Image
-            className='rounded-full'
-            layout='responsive'
-            width={30}
-            height={30}
-            src={userImg}
-            alt={caption}
-          />
+          <img className='rounded-full' src={profileImg} alt={caption} />
         </div>
 
         <p className='flex-1 font-bold cursor-pointer'>{username}</p>
         <DotsHorizontalIcon className='h-5 cursor-pointer' />
       </div>
-      <img className='object-cover w-full' src={img} alt='' />
+      <img className='object-cover w-full' src={image} alt='' />
       {/* buttons */}
       <div className='flex justify-between items-center pl-3 py-3'>
         <div className='flex space-x-4'>

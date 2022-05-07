@@ -27,18 +27,18 @@ const Phone = () => {
     <div className='hidden md:col-span-1 lg:inline-grid right-0'>
       <div className='mx-auto flex flex-row justify-end'>
         <div className='absolute'>
-          <div className='phone'>
-            <img className='sombra_phone' src={imagen} alt='insta screenshot' />
+          <div className='phone -rotate-12'>
+            <img
+              className='sombra_phone'
+              src={images[0]}
+              alt='insta screenshot'
+            />
           </div>
         </div>
 
-        <div className='mx-auto p-3 px-20'>
-          <div className='phone'>
-            <img
-              className='sombra_phone'
-              src={images[2]}
-              alt='insta screenshot'
-            />
+        <div className='relative rotate-6'>
+          <div className='phone '>
+            <img className='sombra_phone' src={imagen} alt='insta screenshot' />
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@
 
 @layer components {
   .navBtn {
-    @apply hidden h-6 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-150 ease-out;
+    @apply h-7 inline-flex cursor-pointer hover:scale-125 transition-all duration-150 ease-out;
   }
   .btn {
     @apply h-7 hover:scale-110 transition-all duration-150 ease-out cursor-pointer;
@@ -14,6 +14,15 @@
   }
   .sombra_phone {
     @apply shadow-inner shadow-slate-600 rounded-3xl;
+  }
+  .transisiones {
+    @apply transition-all ease-out duration-200;
+  }
+  .ocultar {
+    @apply hidden sm:inline-block;
+  }
+  .upload_photo {
+    @apply inline-flex justify-center w-full rounded-lg border-2 border-transparent shadow-lg p-4 bg-slate-400 text-base font-bold text-white hover:bg-red-500 focus:outline-none active:ring-2 active:ring-offset-2 active:ring-red-300 sm:text-sm disabled:bg-slate-300 disabled:cursor-not-allowed transisiones active:shadow-inner active:shadow-red-400 active:bg-red-800 active:text-white;
   }
 }
 

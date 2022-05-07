@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Feed from "../components/Feed";
 import Header from "../components/Header";
 import { useSession } from "next-auth/react";
+import Modal from "../components/Modal";
 
 export default function Home() {
   const router = useRouter();
@@ -26,10 +27,10 @@ export default function Home() {
           </Head>
 
           <Header />
-
           <Feed />
 
           {/* modal */}
+          <Modal />
         </div>
       )}
     </>
