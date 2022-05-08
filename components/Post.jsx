@@ -1,38 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
-import {
-  BookmarkIcon,
-  ChatIcon,
-  DotsHorizontalIcon,
-  EmojiHappyIcon,
-  HeartIcon,
-  PaperAirplaneIcon,
-} from "@heroicons/react/outline";
-
-import {
-  HeartIcon as HeartIconFilled,
-  BookmarkIcon as BookmarkFilled,
-} from "@heroicons/react/solid";
+import { DotsHorizontalIcon, EmojiHappyIcon } from "@heroicons/react/outline";
 
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
 } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import Moment from "react-moment";
+import { Buttons, Comments } from "./Comments";
 
 import { db } from "../firebase";
 
 const Post = ({ post }) => {
   const { data: session } = useSession();
-  const [corazon, setcorazon] = useState(false);
   const [save, setsave] = useState(false);
-  const [contadorLikes, setcontadorLikes] = useState(0);
-  const { id, username, image, profileImg, caption } = post.data();
+  const [likes, setLikes] = useState([]);
+  const [hasliked, sethasliked] = useState(false);
+  const { username, image, profileImg, caption } = post.data();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
 
@@ -46,8 +37,34 @@ const Post = ({ post }) => {
         ),
         (snapshot) => setComments(snapshot.docs)
       ),
-    [db]
+    [db, post.id]
   );
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "posts", post.id, "likes"), (snapshot) =>
+        setLikes(snapshot.docs)
+      ),
+    [db, post.id]
+  );
+
+  useEffect(
+    () =>
+      sethasliked(
+        likes.findIndex((like) => like.id === session?.user?.uid) !== -1
+      ),
+    [likes]
+  );
+
+  const likePost = async () => {
+    if (hasliked) {
+      await deleteDoc(doc(db, "posts", post.id, "likes", session.user.uid));
+    } else {
+      await setDoc(doc(db, "posts", post.id, "likes", session.user.uid), {
+        username: session.user.username,
+      });
+    }
+  };
 
   const sendComment = async (e) => {
     e.preventDefault();
@@ -72,81 +89,37 @@ const Post = ({ post }) => {
         <DotsHorizontalIcon className='h-5 cursor-pointer' />
       </div>
       <img className='object-cover w-full' src={image} alt='' />
-      {/* buttons */}
-      <div className='flex justify-between items-center pl-3 py-3'>
-        <div className='flex space-x-4'>
-          {corazon === false ? (
-            <HeartIcon
-              onClick={() => {
-                setcorazon(!corazon);
-                setcontadorLikes(contadorLikes + 1);
-              }}
-              className='btn'
-            />
-          ) : (
-            <HeartIconFilled
-              onClick={() => {
-                setcorazon(!corazon);
-                setcontadorLikes(contadorLikes - 1);
-              }}
-              className='btn text-red-500'
-            />
-          )}
-          <ChatIcon className='btn' />
-          <PaperAirplaneIcon className='btn rotate-45' />
-        </div>
-        <div className='pr-4'>
-          {save === false ? (
-            <BookmarkIcon className='btn' onClick={() => setsave(!save)} />
-          ) : (
-            <BookmarkFilled
-              className='btn text-red-500'
-              onClick={() => setsave(!save)}
-            />
-          )}
-        </div>
-      </div>
 
-      {contadorLikes !== 0 && (
-        <p className='pl-4 mb-2 font-bold'>{contadorLikes} Me gusta</p>
+      {/* buttons */}
+      <Buttons
+        hasliked={hasliked}
+        likePost={likePost}
+        save={save}
+        setsave={setsave}
+      />
+
+      {likes.length > 0 && (
+        <p className='pl-4 mb-2 font-bold'>{likes.length} Me gusta</p>
       )}
 
       {/* caption */}
-      <p className='pl-4 truncate'>
+      <p className='pl-4 pb-4 truncate'>
         <span className='font-bold mr-1'>{username}</span> {caption}
       </p>
       {/* comments */}
 
       {comments.length > 0 && (
-        <div className='pl-4 pt-3 mb-2 h-16 overflow-y-scroll'>
+        <div className='bg-slate-100 pl-4 pt-3 mb-2 h-24 overflow-y-scroll shadow-inner'>
           {comments.map((comentario) => (
-            <div
-              key={comentario.id}
-              className='flex items-center space-x-2 mb-3'>
-              {/* <img
-                className='rounded-full h-7'
-                src={comentario.data().userImage}
-                alt=''
-              /> */}
-              <p className='flex text-sm flex-1 gap-2'>
-                <span className='font-semibold'>
-                  {comentario.data().username}
-                </span>
-                {comentario.data().comment}
-              </p>
-              <Moment
-                interval={600}
-                fromNow
-                className='text-xs text-slate-500 pr-4'>
-                {comentario.data().timestamp?.toDate()}
-              </Moment>
-            </div>
+            <Comments key={comentario.id} comentario={comentario} />
           ))}
         </div>
       )}
 
       {/* input box */}
-      <form action='' className='flex items-center p-3'>
+      <form
+        action=''
+        className='flex items-center p-3 focus-within:drop-shadow-md'>
         <EmojiHappyIcon className='btn' />
         <input
           value={comment}

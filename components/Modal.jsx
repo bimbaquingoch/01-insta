@@ -34,7 +34,6 @@ const Modal = () => {
       profileImg: session.user.image,
       timestamp: serverTimestamp(),
     });
-    console.log("new doc added with id:", docRef.id);
 
     const imageRef = ref(storage, `posts/${docRef.id}/image`);
 
@@ -109,9 +108,7 @@ const Modal = () => {
                   <div className='mt-3 text-center sm:mt-5'>
                     <Dialog.Title
                       as='h3'
-                      className={
-                        "text-lg leading-6 font-medium text-slate-700"
-                      }>
+                      className='text-lg leading-6 font-medium text-slate-700'>
                       Subir Foto
                     </Dialog.Title>
                     <div>
